@@ -3,4 +3,5 @@
     <string name="no_data_found">No data found</string>
     <string name="na">No data available</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="no_network_available">No internet connection available</string>
 </resources>

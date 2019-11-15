@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,14 +20,15 @@ import java.util.List;
 
 public class CountryDataListAdapter extends RecyclerView.Adapter<CountryDataListAdapter.ViewHolder> {
 
-    private List<Rows> mData;
+    private List<Rows> rowData;
     private LayoutInflater mInflater;
     private Context context;
+
     // data is passed into the constructor
-    public CountryDataListAdapter(Context context, List<Rows> data) {
+    public CountryDataListAdapter(Context context, List<Rows> rowData) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
-        this.context =context;
+        this.rowData = rowData;
+        this.context = context;
     }
 
 
@@ -40,32 +42,32 @@ public class CountryDataListAdapter extends RecyclerView.Adapter<CountryDataList
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (mData.get(position).getTitle() != null)
-            holder.tvTitle.setText(mData.get(position).getTitle());
-        else
-            holder.tvTitle.setText(R.string.na);
 
-        if (mData.get(position).getDescription() != null)
-            holder.tvDescription.setText(mData.get(position).getDescription());
-        else
-            holder.tvDescription.setText(R.string.na);
+            if (rowData.get(position).getTitle() != null)
+                holder.tvTitle.setText(rowData.get(position).getTitle());
+            else
+                holder.tvTitle.setText(R.string.na);
 
-        if (mData.get(position).getDescription() != null) {
-            Glide.with(context).
-                    load(mData.get(position).getImageHref())
-                    .apply(new RequestOptions().placeholder(R.drawable.image_placeholder))
-                    .into(holder.ivPhoto);
-        }
-        else {
-            holder.ivPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_launcher_background));
-        }
+            if (rowData.get(position).getDescription() != null)
+                holder.tvDescription.setText(rowData.get(position).getDescription());
+            else
+                holder.tvDescription.setText(R.string.na);
+
+            if (rowData.get(position).getImageHref() != null) {
+                Glide.with(context).
+                        load(rowData.get(position).getImageHref())
+                        .apply(new RequestOptions().placeholder(R.drawable.image_placeholder))
+                        .into(holder.ivPhoto);
+            } else {
+                holder.ivPhoto.setImageDrawable(context.getResources().getDrawable(R.drawable.image_placeholder));
+            }
 
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return rowData.size();
     }
 
 
@@ -73,9 +75,11 @@ public class CountryDataListAdapter extends RecyclerView.Adapter<CountryDataList
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvTitle, tvDescription;
         ImageView ivPhoto;
+        RelativeLayout rlRoot;
 
         ViewHolder(View itemView) {
             super(itemView);
+            rlRoot = itemView.findViewById(R.id.rlRoot);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             ivPhoto = itemView.findViewById(R.id.ivPhoto);

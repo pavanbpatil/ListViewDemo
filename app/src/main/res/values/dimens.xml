@@ -39,4 +39,6 @@
     <dimen name="home_flower_text">17sp</dimen>
     <dimen name="ok_size">32sp</dimen>
     <dimen name="margin8">8dp</dimen>
+    <dimen name="margin0">0dp</dimen>
+    <dimen name="margin70">70dp</dimen>
 </resources>

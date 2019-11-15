@@ -14,5 +14,10 @@ public class Constant {
         String SOMETHING_ERROR = "Something went wrong";
         String LOADER_TEXT = "Loading...";
     }
-
+    public interface Common {
+        String SHARED_PREFERENCES = "SHARED_PREFERENCES";
+    }
+    public interface SharedPreferences {
+        String COUNTRY_DATA = "COUNTRY_DATA";
+    }
 }

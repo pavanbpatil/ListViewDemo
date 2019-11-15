@@ -61,6 +61,7 @@ public class FetchListPresenterImpl implements FetchListPresenter,retrofit2.Call
 
     @Override
     public void onFailure(Call<ResponseBody> call, Throwable t) {
+        Utilities.hideLoader();
         fetchListView.fetchDataFailure(Constant.AppConstants.API_ERROR);
     }
 
