@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ListViewDemo</string>
+    <string name="no_data_found">No data found</string>
+    <string name="na">No data available</string>
+    <string name="menu_refresh">Refresh</string>
+</resources>
